@@ -1,5 +1,6 @@
 (() => {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "use strict";
     function isWebp() {
         function testWebP(callback) {
@@ -288,6 +289,8 @@
     window["FLS"] = true;
     isWebp();
 =======
+=======
+>>>>>>> 2d1f56c (3)
     var __webpack_modules__ = {
         41: module => {
             module.exports = class Spline {
@@ -684,5 +687,8 @@
         window["FLS"] = true;
         isWebp();
     })();
+<<<<<<< HEAD
 >>>>>>> 338a59d (Сделал плавную кривую)
+=======
+>>>>>>> 2d1f56c (3)
 })();
