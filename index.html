@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Shedule App</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20250531133910">
+	<!-- <link rel="shortcut icon" href="favicon.ico"> -->
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+			</div>
+		</header>
+		<main class="page">
+			<div class="main__container">
+				<div class="main__shedule shedule">
+					<canvas class="shedule__canvas" id="shedule"></canvas>
+					<div class="shedule__wrap">
+						<button type="button" class="shedule__button shedule__button--1 data__button">1</button>
+						<button type="button" class="shedule__button shedule__button--2 data__button">2</button>
+					</div>
+				</div>
+				<div class="main__data">
+					<form action="" class="data" ">
+      <fieldset class=" data__block data__main">
+						<legend class="data__title">Данные по осям</legend>
+						<div class="data__row">
+							<input autocomplete="off" type="text" name="x" placeholder="X" class="input" id="x">
+							<label for="x">Шкала X</label>
+						</div>
+						<div class="data__row">
+							<input autocomplete="off" type="text" name="y" placeholder="Y" class="input" id="y">
+							<label for="x">Шкала Y</label>
+						</div>
+						<div class="data__row">
+							<input autocomplete="off" type="number" name="divisionX" placeholder="100" class="input" id="divisionX">
+							<label for="divisionX">Макс. значение по X</label>
+						</div>
+						<div class="data__row">
+							<input autocomplete="off" type="number" name="divisionY" placeholder="100" class="input" id="divisionY">
+							<label for="divisionY">Макс. значение по Y</label>
+						</div>
+
+						<div class="data__row">
+							<input autocomplete="off" type="color" name="color" placeholder="Цвет графика" class="input__color" id="color">
+							<label for=" color">Цвет графика</label>
+						</div>
+						</fieldset>
+
+						<fieldset class="data__block data__point">
+							<legend class="data__title">Данные для построения</legend>
+
+							<div class="data__row points">
+								<table class="points__table">
+									<tbody class="points__body">
+										<tr class="points__row">
+											<th class="points__title points__title--x">X</th>
+											<th class="points__title points__title--y">Y</th>
+										</tr>
+										<tr class="points__row points__row--data">
+											<td class="points__x">
+												<input autocomplete="off" type="number" name="point" placeholder="0" class="input__point input__point--x">
+											</td>
+											<td class="points__y">
+												<input autocomplete="off" type="number" name="point" placeholder="0" class="input__point input__point--y">
+											</td>
+										</tr>
+									</tbody>
+
+								</table>
+							</div>
+						</fieldset>
+						<div class="data__wrap">
+							<button type="button" class="data__button data__button--build">Построить</button>
+							<button type="button" class="data__button data__button--clear">Очистить</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+			</div>
+		</footer>
+	</div>
+	<script src="js/app.min.js?_v=20250531133910"></script>
+</body>
+
+</html>
