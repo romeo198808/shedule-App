@@ -149,8 +149,8 @@
             body.innerHTML = bodyStart;
         }
         var cubic_spline = __webpack_require__(41);
-        function buildShedule(ctx, divisions, color) {
-            console.log(this);
+        function buildShedule(ctx, divisions, color, type) {
+            if (!this.x || !this.y || this.x.length !== this.y.length || this.x.length === 0) return;
             const pointsX = [];
             const pointsY = [];
             for (let i = 0; i < this.x.length; i++) {
@@ -166,15 +166,26 @@
                 ctx.fill();
                 ctx.closePath();
             }
-            const spline = new cubic_spline(pointsX, pointsY);
-            ctx.beginPath();
-            ctx.moveTo(pointsX[0], pointsY[0]);
-            for (let x = pointsX[0]; x <= pointsX[pointsX.length - 1]; x += 1) {
-                const y = spline.at(x);
-                ctx.lineTo(x, y);
+            if (type === "linear") drawLinearByPoints(); else if (type === "curve") drawCurveByPoints();
+            function drawLinearByPoints() {
+                ctx.beginPath();
+                ctx.strokeStyle = color;
+                ctx.moveTo(pointsX[0], pointsY[0]);
+                for (let i = 1; i < pointsX.length; i++) ctx.lineTo(pointsX[i], pointsY[i]);
+                ctx.stroke();
+                ctx.closePath();
             }
-            ctx.strokeStyle = color;
-            ctx.stroke();
+            function drawCurveByPoints() {
+                const spline = new cubic_spline(pointsX, pointsY);
+                ctx.beginPath();
+                ctx.moveTo(pointsX[0], pointsY[0]);
+                for (let x = pointsX[0]; x <= pointsX[pointsX.length - 1]; x += 1) {
+                    const y = spline.at(x);
+                    ctx.lineTo(x, y);
+                }
+                ctx.strokeStyle = color;
+                ctx.stroke();
+            }
         }
         const canvas = document.querySelector("#shedule");
         const canvasContainer = document.querySelector(".shedule");
@@ -190,7 +201,8 @@
         const buttonShedule1 = document.querySelector(".shedule__button--1");
         const buttonShedule2 = document.querySelector(".shedule__button--2");
         const dataMain = document.querySelector(".data__main");
-        let canvasWidth, canvasHeight, maxXValue, maxYValue, divisions, colorValue, xToUpperCase, yToUpperCase;
+        const dataType = document.querySelector(".data__type");
+        let canvasWidth, canvasHeight, maxXValue, maxYValue, divisions, colorValue, xToUpperCase, yToUpperCase, type;
         let flag = true;
         const ctx = canvas.getContext("2d");
         setSize();
@@ -331,7 +343,6 @@
             ctx.fillText(yToUpperCase, 60, 30);
         }
         function setData() {
-            clearCanvas();
             maxXValue = maxX.value === "" ? "10" : maxX.value;
             maxYValue = maxY.value === "" ? "10" : maxY.value;
             colorValue = color.value === "" ? "#000" : color.value;
@@ -371,8 +382,10 @@
         }
         function buttonBuildListener() {
             paintCanvas(flag);
+            type = document.querySelector('input[name="type"]:checked')?.value || "linear";
+            console.log(type);
             let points = getArraysPoint();
-            let buildSheduleWithData = buildShedule.bind(points, ctx, divisions, colorValue);
+            let buildSheduleWithData = buildShedule.bind(points, ctx, divisions, colorValue, type);
             buildSheduleWithData();
         }
         function buttonClearListener() {
@@ -382,6 +395,7 @@
         }
         window.addEventListener("resize", resize);
         dataMain.addEventListener("change", setData);
+        dataType.addEventListener("change", setData);
         buttonBuild.addEventListener("click", buttonBuildListener);
         buttonClear.addEventListener("click", buttonClearListener);
         buttonShedule1.addEventListener("click", (() => {

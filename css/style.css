@@ -205,6 +205,11 @@ body {
       justify-content: space-around;
 }
 
+.data__wrap--type {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
 .data__button {
   width: 40%;
   padding: 0.625rem;
@@ -229,6 +234,14 @@ body {
           justify-content: space-between;
   gap: 0.625rem;
   margin-top: 0.625rem;
+}
+
+.data__row--type {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1.25rem;
+  font-size: 1.25rem;
 }
 
 .input {
